@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Phần mềm bán hàng cho cửa hàng kinh doanh các thiết bị điện tử
+Electronic Mart</title>
+    <meta
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+      name="viewport"
+    />
+    <link
+      rel="icon"
+      href="assets/img/kaiadmin/favicon.ico"
+      type="image/x-icon"
+    />
+
+    <!-- Fonts and icons -->
+    <script src="assets/js/plugin/webfont/webfont.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+      WebFont.load({
+        google: { families: ["Public Sans:300,400,500,600,700"] },
+        custom: {
+          families: [
+            "Font Awesome 5 Solid",
+            "Font Awesome 5 Regular",
+            "Font Awesome 5 Brands",
+            "simple-line-icons",
+          ],
+          urls: ["assets/css/fonts.min.css"],
+        },
+        active: function () {
+          sessionStorage.fonts = true;
+        },
+      });
+    </script>
+<style>
+    .chart-container {
+      height: 400px;
+      width: 100%; /* Đảm bảo chiều rộng tối đa */
+    }
+  
+    .row > .col-md-6 {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  
+    .card {
+      height: 450px; /* Đảm bảo các thẻ cùng chiều cao */
+    }
+  
+    canvas {
+      max-height: 350px; /* Hạn chế chiều cao của canvas bên trong */
+    }
+  </style>
+  
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/plugins.min.css" />
+    <link rel="stylesheet" href="assets/css/kaiadmin.min.css" />
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link rel="stylesheet" href="assets/css/demo.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Sidebar -->
+      <div class="sidebar" data-background-color="dark">
+        <div class="sidebar-logo">
+          <!-- Logo Header -->
+          <div class="logo-header" data-background-color="dark">
+            <a href="index.html" class="logo">
+              <img
+  src="assets/img/kaiadmin/123.jpg"
+  alt="navbar brand"
+  class="navbar-brand"
+  height="80px"
+  style="border-radius: 10px;"
+/>
+            </a>
+            <div class="nav-toggle">
+              <button class="btn btn-toggle toggle-sidebar">
+                <i class="gg-menu-right"></i>
+              </button>
+              <button class="btn btn-toggle sidenav-toggler">
+                <i class="gg-menu-left"></i>
+              </button>
+            </div>
+            <button class="topbar-toggler more">
+              <i class="gg-more-vertical-alt"></i>
+            </button>
+          </div>
+          <!-- End Logo Header -->
+        </div>
+        <div class="sidebar-wrapper scrollbar scrollbar-inner">
+            <div class="sidebar-content">
+              <ul class="nav nav-secondary">
+                <li class="nav-item">
+                  <a href="index.html">
+                    <i class="fas fa-home"></i>
+                    <p>Dashboard</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="baocaothongke.html">
+                    <i class="fas fa-chart-bar"></i>
+                    <p>Báo cáo thống kê</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="quanlyhoadon.html">
+                    <i class="fas fa-file-invoice"></i>
+                    <p>Quản lý hóa đơn</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="quanlykhachhang.html">
+                    <i class="fas fa-users"></i>
+                    <p>Quản lý khách hàng</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="quanlykhuyenmai.html">
+                    <i class="fas fa-tags"></i>
+                    <p>Quản lý khuyến mãi</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="quanlyloaisanpham.html">
+                    <i class="fas fa-boxes"></i>
+                    <p>Quản lý loại sản phẩm</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="quanlynhacungcap.html">
+                    <i class="fas fa-truck"></i>
+                    <p>Quản lý nhà cung cấp</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="quanlynhanvien.html">
+                    <i class="fas fa-user-tie"></i>
+                    <p>Quản lý nhân viên</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="quanlysanpham.html">
+                    <i class="fas fa-box"></i>
+                    <p>Quản lý sản phẩm</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="quanlytaikhoan.html">
+                    <i class="fas fa-user-circle"></i>
+                    <p>Quản lý tài khoản</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="timkiem.html">
+                    <i class="fas fa-search"></i>
+                    <p>Tìm kiếm</p>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+      </div>
+      <!-- End Sidebar -->
+
+      <div class="main-panel">
+        <div class="main-header">
+          <div class="main-header-logo">
+            <!-- Logo Header -->
+            <div class="logo-header" data-background-color="dark">
+              <a href="index.html" class="logo">
+                <img
+                  src="assets/img/kaiadmin/123.jpg"
+                  alt="navbar brand"
+                  class="navbar-brand"
+                  height="20"
+                />
+              </a>
+              <div class="nav-toggle">
+                <button class="btn btn-toggle toggle-sidebar">
+                  <i class="gg-menu-right"></i>
+                </button>
+                <button class="btn btn-toggle sidenav-toggler">
+                  <i class="gg-menu-left"></i>
+                </button>
+              </div>
+              <button class="topbar-toggler more">
+                <i class="gg-more-vertical-alt"></i>
+              </button>
+            </div>
+            <!-- End Logo Header -->
+          </div>
+          <!-- Navbar Header -->
+          <nav
+            class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom"
+          >
+          <div class="container-fluid">
+            <!-- Tìm kiếm -->
+            <nav class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <button type="submit" class="btn btn-search pe-1">
+                    <i class="fa fa-search search-icon"></i>
+                  </button>
+                </div>
+                <input type="text" placeholder="Tìm kiếm Loại sản phẩm..." class="form-control" />
+              </div>
+            </nav>
+          
+            <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
+              <!-- Tin nhắn -->
+              <li class="nav-item topbar-icon dropdown hidden-caret">
+                <a class="nav-link dropdown-toggle" href="#" id="messageDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa fa-envelope"></i>
+                </a>
+                <ul class="dropdown-menu messages-notif-box animated fadeIn" aria-labelledby="messageDropdown">
+                  <li>
+                    <div class="dropdown-title d-flex justify-content-between align-items-center">
+                      Tin nhắn
+                      <a href="#" class="small">Đánh dấu đã đọc</a>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="message-notif-scroll scrollbar-outer">
+                      <div class="notif-center">
+                        <a href="#">
+                          <div class="notif-img">
+                            <img src="assets/img/user1.jpg" alt="Hình ảnh" />
+                          </div>
+                          <div class="notif-content">
+                            <span class="subject">Admin</span>
+                            <span class="block">Đơn hàng của bạn đã được xác nhận</span>
+                            <span class="time">10 phút trước</span>
+                          </div>
+                        </a>
+                        <a href="#">
+                          <div class="notif-img">
+                            <img src="assets/img/user2.jpg" alt="Hình ảnh" />
+                          </div>
+                          <div class="notif-content">
+                            <span class="subject">Trần Thị B</span>
+                            <span class="block">Loại sản phẩm bạn yêu thích đã giảm giá</span>
+                            <span class="time">15 phút trước</span>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <a class="see-all" href="#">Xem tất cả tin nhắn<i class="fa fa-angle-right"></i></a>
+                  </li>
+                </ul>
+              </li>
+          
+              <!-- Thông báo -->
+              <li class="nav-item topbar-icon dropdown hidden-caret">
+                <a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa fa-bell"></i>
+                  <span class="notification">2</span>
+                </a>
+                <ul class="dropdown-menu notif-box animated fadeIn" aria-labelledby="notifDropdown">
+                  <li>
+                    <div class="dropdown-title">Bạn có 2 thông báo mới</div>
+                  </li>
+                  <li>
+                    <div class="notif-scroll scrollbar-outer">
+                      <div class="notif-center">
+                        <a href="#">
+                          <div class="notif-icon notif-primary">
+                            <i class="fa fa-shopping-cart"></i>
+                          </div>
+                          <div class="notif-content">
+                            <span class="block">Đơn hàng mới vừa được đặt</span>
+                            <span class="time">5 phút trước</span>
+                          </div>
+                        </a>
+                        <a href="#">
+                          <div class="notif-icon notif-success">
+                            <i class="fa fa-comment"></i>
+                          </div>
+                          <div class="notif-content">
+                            <span class="block">Khách hàng đã để lại đánh giá</span>
+                            <span class="time">20 phút trước</span>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <a class="see-all" href="#">Xem tất cả thông báo<i class="fa fa-angle-right"></i></a>
+                  </li>
+                </ul>
+              </li>
+          
+              <!-- Tác vụ nhanh -->
+              <li class="nav-item topbar-icon dropdown hidden-caret">
+                <a class="nav-link" data-bs-toggle="dropdown" href="#" aria-expanded="false">
+                  <i class="fas fa-layer-group"></i>
+                </a>
+                <div class="dropdown-menu quick-actions animated fadeIn">
+                  <div class="quick-actions-header">
+                    <span class="title mb-1">Tác vụ nhanh</span>
+                    <span class="subtitle op-7">Lối tắt</span>
+                  </div>
+                  <div class="quick-actions-scroll scrollbar-outer">
+                    <div class="quick-actions-items">
+                      <div class="row m-0">
+                        <a class="col-6 col-md-4 p-0" href="#">
+                          <div class="quick-actions-item">
+                            <div class="avatar-item bg-primary rounded-circle">
+                              <i class="fas fa-chart-line"></i>
+                            </div>
+                            <span class="text">Báo cáo bán hàng</span>
+                          </div>
+                        </a>
+                        <a class="col-6 col-md-4 p-0" href="#">
+                          <div class="quick-actions-item">
+                            <div class="avatar-item bg-warning rounded-circle">
+                              <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <span class="text">Theo dõi địa chỉ</span>
+                          </div>
+                        </a>
+                        <a class="col-6 col-md-4 p-0" href="#">
+                          <div class="quick-actions-item">
+                            <div class="avatar-item bg-info rounded-circle">
+                              <i class="fas fa-file-alt"></i>
+                            </div>
+                            <span class="text">Quản lý hóa đơn</span>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+          
+              <!-- Hồ sơ người dùng -->
+              <li class="nav-item topbar-user dropdown hidden-caret">
+                <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#" aria-expanded="false">
+                  <div class="avatar-sm">
+                    <img src="assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle" />
+                  </div>
+                  <span class="profile-username">
+                    <span class="op-7">Xin chào,</span>
+                    <span class="fw-bold">Admin</span>
+                  </span>
+                </a>
+                <ul class="dropdown-menu dropdown-user animated fadeIn">
+                  <div class="dropdown-user-scroll scrollbar-outer">
+                    <li>
+                      <div class="user-box">
+                        <div class="avatar-lg">
+                          <img src="assets/img/profile.jpg" alt="image profile" class="avatar-img rounded" />
+                        </div>
+                        <div class="u-text">
+                          <h4>Admin</h4>
+                          <p class="text-muted">email@example.com</p>
+                          <a href="profile.html" class="btn btn-xs btn-secondary btn-sm">Xem hồ sơ</a>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Hồ sơ của tôi</a>
+                      <a class="dropdown-item" href="#">Số dư</a>
+                      <a class="dropdown-item" href="#">Hộp thư</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Cài đặt tài khoản</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Đăng xuất</a>
+                    </li>
+                  </div>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          
+          </nav>
+          <!-- End Navbar -->
+        </div>
+        <div class="container">
+            <div class="page-inner">
+              <!-- Tiêu đề báo cáo -->
+              <div class="page-header">
+                <h2 class="fw-bold mb-3">Báo cáo Thống kê</h2>
+                <p class="page-category">
+                  Báo cáo tổng hợp các số liệu quan trọng trong hoạt động kinh doanh.
+                  Dưới đây là các biểu đồ minh họa chi tiết.
+                </p>
+              </div>
+        
+              <!-- Biểu đồ doanh thu theo tháng -->
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="card">
+                    <div class="card-header">
+                      <div class="card-title">Doanh thu theo tháng</div>
+                    </div>
+                    <div class="card-body">
+                      <div class="chart-container">
+                        <canvas id="lineChart"></canvas>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+        
+                <!-- Biểu đồ sản phẩm bán chạy -->
+                <div class="col-md-6">
+                  <div class="card">
+                    <div class="card-header">
+                      <div class="card-title">Sản phẩm bán chạy</div>
+                    </div>
+                    <div class="card-body">
+                      <div class="chart-container">
+                        <canvas id="barChart"></canvas>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+        
+                <!-- Biểu đồ phân phối khách hàng -->
+                <div class="col-md-6">
+                  <div class="card">
+                    <div class="card-header">
+                      <div class="card-title">Tỷ lệ khách hàng</div>
+                    </div>
+                    <div class="card-body">
+                      <div class="chart-container">
+                        <canvas id="pieChart"></canvas>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+        
+                <!-- Biểu đồ tăng trưởng lợi nhuận -->
+                <div class="col-md-6">
+                  <div class="card">
+                    <div class="card-header">
+                      <div class="card-title">Tăng trưởng lợi nhuận</div>
+                    </div>
+                    <div class="card-body">
+                      <div class="chart-container">
+                        <canvas id="radarChart"></canvas>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+              <!-- Kết luận -->
+              <div class="card mt-4">
+                <div class="card-body">
+                  <h4 class="fw-bold">Kết luận</h4>
+                  <p>
+                    Trong 6 tháng đầu năm, doanh thu tăng trưởng ổn định với tốc độ tăng trung bình 10% mỗi tháng. 
+                    Các sản phẩm bán chạy nhất là iPhone 14 và MacBook Pro, chiếm 40% tổng doanh thu.
+                  </p>
+                  <p>
+                    Tỷ lệ khách hàng mới tăng 15% so với tháng trước, cho thấy hiệu quả của các chương trình quảng bá. 
+                    Lợi nhuận có sự cải thiện đáng kể trong quý 2, đặc biệt ở các mảng kinh doanh cốt lõi.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        
+       
+          
+          
+        
+
+        <footer class="footer">
+          <div class="container-fluid d-flex justify-content-between">
+            <nav class="pull-left">
+              <ul class="nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Trang Chủ</a>
+                </li>
+                <li class="nav-item">
+                  
+                </li>
+             
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Liên Hệ</a>
+                </li>
+              </ul>
+            </nav>
+            <div class="copyright">
+              2024, thiết kế bởi <a href="https://electronicmart.com">Electronic Mart</a>.
+              Tất cả các quyền được bảo lưu.
+            </div>
+           
+          </div>
+        </footer>
+        
+      </div>
+
+    
+      <!-- End Custom template -->
+    </div>
+    <!--   Core JS Files   -->
+    <script src="assets/js/core/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/core/popper.min.js"></script>
+    <script src="assets/js/core/bootstrap.min.js"></script>
+
+    <!-- jQuery Scrollbar -->
+    <script src="assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+    <!-- Datatables -->
+    <script src="assets/js/plugin/datatables/datatables.min.js"></script>
+    <!-- Kaiadmin JS -->
+    <script src="assets/js/kaiadmin.min.js"></script>
+    <!-- Kaiadmin DEMO methods, don't include it in your project! -->
+    <script src="assets/js/setting-demo2.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#basic-datatables").DataTable({});
+
+        $("#multi-filter-select").DataTable({
+          pageLength: 5,
+          initComplete: function () {
+            this.api()
+              .columns()
+              .every(function () {
+                var column = this;
+                var select = $(
+                  '<select class="form-select"><option value=""></option></select>'
+                )
+                  .appendTo($(column.footer()).empty())
+                  .on("change", function () {
+                    var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+                    column
+                      .search(val ? "^" + val + "$" : "", true, false)
+                      .draw();
+                  });
+
+                column
+                  .data()
+                  .unique()
+                  .sort()
+                  .each(function (d, j) {
+                    select.append(
+                      '<option value="' + d + '">' + d + "</option>"
+                    );
+                  });
+              });
+          },
+        });
+
+        // Add Row
+        $("#add-row").DataTable({
+          pageLength: 5,
+        });
+
+        var action =
+          '<td> <div class="form-button-action"> <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit"></i> </button> <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times"></i> </button> </div> </td>';
+
+        $("#addRowButton").click(function () {
+          $("#add-row")
+            .dataTable()
+            .fnAddData([
+              $("#addName").val(),
+              $("#addPosition").val(),
+              $("#addOffice").val(),
+              action,
+            ]);
+          $("#addRowModal").modal("hide");
+        });
+      });
+    </script>
+       <!-- JavaScript: Biểu đồ -->
+       <script>
+        // Biểu đồ Doanh thu theo tháng
+        var revenueChart = new Chart(document.getElementById("lineChart").getContext("2d"), {
+          type: "line",
+          data: {
+            labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6"],
+            datasets: [
+              {
+                label: "Doanh thu (triệu VNĐ)",
+                borderColor: "#1d7af3",
+                backgroundColor: "rgba(29, 122, 243, 0.2)",
+                pointBackgroundColor: "#1d7af3",
+                data: [100, 120, 130, 125, 150, 160],
+                fill: true,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              yAxes: [
+                {
+                  ticks: {
+                    beginAtZero: true,
+                    stepSize: 50,
+                    callback: function (value) {
+                      return value + " triệu";
+                    },
+                  },
+                },
+              ],
+            },
+            legend: {
+              position: "top",
+            },
+          },
+        });
+    
+        // Biểu đồ Sản phẩm bán chạy
+        var topProductsChart = new Chart(document.getElementById("barChart").getContext("2d"), {
+          type: "bar",
+          data: {
+            labels: ["iPhone 14", "MacBook Pro", "AirPods Pro", "Apple Watch", "iPad Air"],
+            datasets: [
+              {
+                label: "Số lượng bán ra",
+                backgroundColor: ["#1d7af3", "#59d05d", "#fdaf4b", "#f3545d", "#716aca"],
+                data: [150, 120, 100, 90, 80],
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+              position: "bottom",
+            },
+            scales: {
+              yAxes: [
+                {
+                  ticks: {
+                    beginAtZero: true,
+                  },
+                },
+              ],
+            },
+          },
+        });
+    
+        // Biểu đồ Tỷ lệ khách hàng
+        var userDistributionChart = new Chart(document.getElementById("pieChart").getContext("2d"), {
+          type: "pie",
+          data: {
+            labels: ["Khách hàng mới", "Khách hàng cũ", "Khách hàng tiềm năng"],
+            datasets: [
+              {
+                data: [40, 35, 25],
+                backgroundColor: ["#1d7af3", "#59d05d", "#fdaf4b"],
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            legend: {
+              position: "bottom",
+            },
+          },
+        });
+    
+        // Biểu đồ Tăng trưởng lợi nhuận
+        var profitGrowthChart = new Chart(document.getElementById("radarChart").getContext("2d"), {
+          type: "radar",
+          data: {
+            labels: ["Quý 1", "Quý 2", "Quý 3", "Quý 4"],
+            datasets: [
+              {
+                label: "Lợi nhuận năm 2023",
+                data: [20, 30, 25, 40],
+                borderColor: "#1d7af3",
+                backgroundColor: "rgba(29, 122, 243, 0.2)",
+                pointBackgroundColor: "#1d7af3",
+              },
+              {
+                label: "Lợi nhuận năm 2022",
+                data: [15, 25, 20, 30],
+                borderColor: "#fdaf4b",
+                backgroundColor: "rgba(253, 175, 75, 0.2)",
+                pointBackgroundColor: "#fdaf4b",
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+              position: "bottom",
+            },
+          },
+        });
+      </script>
+  </body>
+</html>
