@@ -72,7 +72,7 @@ $(".changeBackgroundColor").on("click", function () {
 function customCheckColor() {
   var logoHeader = $(".logo-header").attr("data-background-color");
   if (logoHeader !== "white") {
-    $(".logo-header .navbar-brand").attr("src", "assets/img/kaiadmin/123.jpg");
+    $(".logo-header .navbar-brand").attr("src", "123.jpg");
   } else {
     $(".logo-header .navbar-brand").attr("src", "assets/img/kaiadmin/logo_dark.svg");
   }
